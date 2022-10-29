@@ -3,9 +3,6 @@ from tkinter import ttk
 import cv2
 import sys
 
-
-from numpy import empty
-
 class FacialRecognition():
     # Get user supplied images
     cascPath = sys.argv[1]
@@ -13,7 +10,6 @@ class FacialRecognition():
 
     # Create the haar cascade
     faceCascade = cv2.CascadeClassifier(cascPath)
-    faces = empty
     video_capture = cv2.VideoCapture(0)
 
     while True:
@@ -34,7 +30,6 @@ class FacialRecognition():
         cv2.imshow('Video', frame)
 
         if cv2.waitKey(1) & 0xFF == ord('q'):
-            cv2.imwrite("knownface" + )
             break
     def AmountOfFaces(self):
         Faces = self.faces
