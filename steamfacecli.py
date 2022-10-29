@@ -3,14 +3,6 @@ import sys
 import numpy
 import hashlib
 
-facetouser = {
-    "superjadon121224": "known/face5464",
-}
-
-facetopassword = {
-    "1234": "known/face5464",
-}
-
 class FacialRecognition():
     # Get user supplied images
     cascPath = sys.argv[1]
