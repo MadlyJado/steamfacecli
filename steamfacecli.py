@@ -75,14 +75,6 @@ class FacialRecognition():
         global faces
         Faces = self.faces
         return "Found {0} faces!".format(len(Faces))
-    
-    
-   
-
-facialrecognition = FacialRecognition()
-
-facialrecognition.SaveFace()
-print(facialrecognition)
 
 class SteamFace():
     
@@ -95,7 +87,7 @@ class SteamFace():
     }
     facialRecognition = FacialRecognition()
     
-    def register(self, user, password):
+    def register(self):
         # Create salt to make password authentication truly secure
         salt = str(random.randbytes(10))
         # Ask user to enter their Steam username
@@ -103,7 +95,8 @@ class SteamFace():
         # Ask user to enter their Steam password
         password = maskpass.askpass(prompt= "Enter the password to your steam account: ", mask="#")
         # Hash it using the salt and password
-        hashedPassword = sha256(password+salt)
+        passwordencoded = (password+salt).encode("utf8")
+        hashedPassword = sha256(passwordencoded)
         # Get the user's face image path by saving their face.
         imagepath = self.facialRecognition.SaveFace()
         # Save username to dictionary linking the username to the image path
@@ -111,14 +104,15 @@ class SteamFace():
         # Do the same with the hashed password
         self.passwords[hashedPassword] = imagepath
         # Save the dictionaries locally to the root folder of the program
-        pickle.dump(self.usernames, './usernames.pkl')
-        pickle.dump(self.passwords, './passwords.pkl')
+        with open("./savedvars.pkl", "wb+") as f:
+            pickle.dump(str(self.usernames), f)
+            pickle.dump(str(self.passwords), f)
+
+        def login(self, username, password):
+            with open("./savedvars.pkl", "rb") as f:
+                
         
         
-        
-        
-        
-        
-        
-        
-    
+steamface = SteamFace()
+
+steamface.register()
