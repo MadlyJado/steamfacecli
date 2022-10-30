@@ -108,8 +108,15 @@ class SteamFace():
             pickle.dump(str(self.usernames), f)
             pickle.dump(str(self.passwords), f)
 
-        def login(self, username, password):
-            with open("./savedvars.pkl", "rb") as f:
+    def login(self, username, password):
+        with open("./savedvars.pkl", "rb") as f:
+            self.usernames = pickle.load(f)
+            self.usernames = dict(self.usernames)
+            self.passwords = pickle.load(f)
+            self.passwords = dict(self.passwords)
+        
+        
+            
                 
         
         
