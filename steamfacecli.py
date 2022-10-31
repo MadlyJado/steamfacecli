@@ -169,7 +169,7 @@ class SteamFace():
     """
     def register(self):
         # Create salt to make password authentication truly secure
-        salt = str(random.randrange(0, 20))
+        salt = str(random.randrange(0, 1000000))
         # Ask user to enter their Steam username
         user = input("Enter your steam username: ")
         # Ask user to enter their Steam password
@@ -202,7 +202,7 @@ class SteamFace():
         user = input("Enter steam username: ")
         password =  maskpass.askpass("Enter steam password: ", "#")
         while True:
-            salt = str(random.randbytes(10))
+            salt = str(random.randrange(0, 1000000))
             passwordpsalt = password+salt
             encodedPass = passwordpsalt.encode('utf8')
             hashPasswordCompare = str(sha256(encodedPass).digest())
@@ -216,4 +216,9 @@ class SteamFace():
         
         
 steamface = SteamFace()
-steamface.login()
+loginorregister = input("Would you like to register or login to Steam? Type register to register or login to login: ")
+
+if(loginorregister == "register"):
+    steamface.register()
+elif(loginorregister == "login"):
+    steamface.login()
