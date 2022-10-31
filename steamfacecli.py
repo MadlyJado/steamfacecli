@@ -169,7 +169,7 @@ class SteamFace():
     """
     def register(self):
         # Create salt to make password authentication truly secure
-        salt = str(random.randbytes(10))
+        salt = str(random.randrange(0, 20))
         # Ask user to enter their Steam username
         user = input("Enter your steam username: ")
         # Ask user to enter their Steam password
